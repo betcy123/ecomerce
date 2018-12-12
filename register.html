@@ -1,0 +1,85 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link href="register.css" rel="stylesheet"> -->
+</head>
+<body>
+    <div class="image">
+    <img src="doo.jpeg" alt="SORRY INTERUPTED" style="width:200px;height:80px">
+    </div>
+    <div class="box">
+    <form name="login" action="#" method="post" onsubmit="validateForm()">
+    <div class="container">
+    <h1>Signup</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+    <label for="name"><br>Your name<br></label>
+    <input type="text" placeholder="Enter Name"  name="name" >
+    <label for="phonenumber"><br>phone number<br></label>
+    <input type="text" id='phones' placeholder="Enter Phone Number" name="phonenumber" >
+    <label for="email"><br>Email<br></label>
+    <input type="email" placeholder="Enter Email" name="email" >
+    <label for="psw"><br>Password<br></label>
+    <input type="password" id='psw' placeholder="Enter Password" name="psw" >
+    <label for="psw-repeat"><br>Repeat Password</br></label>
+    <input type="password" placeholder="Repeat Password" name="confirm_pass" >
+    </hr>
+    <p>We will send you a confirmation message</p>
+  <input type="submit" value="register">
+    <!-- <input type="submit" value="Register" id="btn_idS" onclick="validateform()"> -->
+    </div>
+    <p>Already have an account? <a href="#">Sign in</a>.</p>
+    </form>
+    </div>
+</body>
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script type="text/javascript">
+var request = new XMLHttpRequest();
+function validateForm()
+{       var uname=document.login.name.value;
+        var uemail=document.login.email.value;
+        var mob=document.login.phonenumber.value;
+        var pass=document.login.psw.value;
+        var confirm_pass = document.login.confirm_pass.value;
+//         var phoneno=/^\d{10}$/;
+//         var re =/^[a-zA-Z0-9!@#$%^&*]{1,16}$/;
+        // if(!(mob.match(phoneno))) {
+        //        alert("Enter a valid phone number");
+        //  }
+        //  else if(!(pass.match(re))){
+        //         alert("Enter a valid password");
+        //  }
+        //  // else if(!(pass==confirm_pass)){
+        //  //        alert("missmatch in password");
+        //  // }
+        //  else {
+// $(document).ready(function() {
+//   $("form").submit(function() {
+          var urlEncodedData = "";
+          var urlEncodedDataPairs = [];
+          var name;
+          // var params = {};
+          var params={  name:uname,
+                        email:uemail,
+                        phonenumber:mob,
+                        psw:pass
+                }
+                for(name in params) {
+                 urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(params[name]));
+                  }
+                 urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+var request = new XMLHttpRequest();
+request.open('POST', 'http://172.16.53.30:3000/signup?'+urlEncodedData, true);
+request.responseType = "json";
+request.send(urlEncodedData);
+request.onreadystatechange=function() {
+if (this.readyState == 4 && this.status == 200) {
+ alert("Success K");
+}
+ alert ('hii', request.status);
+console.log(request);
+}
+}
+
+</script>
+</html>

@@ -1,0 +1,144 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="register.css" rel="stylesheet">
+</head>
+<body background>
+    <div class="image">
+    </div>
+    <div class="box">
+    <form name="login" action="#" method="post">
+    <div class="container">
+    <h1>Signup</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+    <label for="name"><br>Your name <span class="req">*</span><br></label>
+    <input type="text" placeholder="Enter Name"id="name" >
+    <label for="phonenumber"><br>phone number <span class="req">*</span><br></label>
+    <input type="text"  placeholder="Enter Phone Number" id="phonenumber" required>
+    <label for="email"><br>Email <span class="req">*</span><br></label>
+    <input type="email" placeholder="Enter Email" id="email" required>
+    <label for="psw"><br>Password <span class="req">*</span><br></label>
+    <input type="password" id='psw' placeholder="Enter Password" required>
+    <label for="psw-repeat"><br>Repeat Password <span class="req">*</span></br></label>
+    <input type="password" placeholder="Repeat Password" id="confirm_pass" required>
+    </hr>
+    <p>We will send you a confirmation message</p>
+    <button onclick="validateForm()" class="button">Register</button>
+    </div>
+    <p>Already have an account? <a href="#">Sign in</a>.</p>
+    </form>
+    </div>
+</body>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+// var request = new XMLHttpRequest();
+function validateForm()
+ {
+//            var uname=document.login.name.value;
+//         var uemail=document.login.email.value;
+//         var mob=document.login.phonenumber.value;
+//         var pass=document.login.psw.value;
+//         var confirm_pass = document.login.confirm_pass.value;
+//         var phoneno=/^\d{10}$/;
+//         var re =/^[a-zA-Z0-9!@#$%^&*]{1,16}$/;
+//         if(!(mob.match(phoneno))) {
+//                alert("Enter a valid phone number");
+//          }
+//          else if(!(pass.match(re))){
+//                 alert("Enter a valid password");
+//          }
+//          // else if(!(pass==confirm_pass)){
+//          //        alert("missmatch in password");
+//          // }
+//          else {
+ // $(document).ready(function() {
+ //    $("form").submit(function() {
+        var uname = $("#name").val();
+         var uemail = $("#email").val();
+         var mob = $("#phonenumber").val();
+         var pass = $("#psw").val();
+         var confirm_pass = $("#confirm_pass").val();
+         var phoneno=/^\d{10}$/;
+         var re =/^[a-zA-Z0-9!@#$%^&*]{1,16}$/;
+         if(!(mob.match(phoneno))) {
+           alert("Enter a valid phone number");
+                  }
+                 else if(!(pass.match(re))){
+                      alert("Enter a valid password");
+                  }
+                  else if(!(pass==confirm_pass)){
+                         alert("missmatch in password");
+                  }
+                  else {
+            // var urlEncodedData = "";
+            // var urlEncodedDataPairs = [];
+            // var name;
+            // // var params = {};
+            // var params={  name:uname,
+            //               email:uemail,
+            //               phonenumber:mob,
+            //               psw:pass
+            //       }
+  $.ajax({
+  method: "POST",
+  async:false,
+  url: "http://172.16.53.30:3000/signup",
+  data: {       name:uname,
+                email:uemail,
+                phonenumber:mob,
+                psw:pass },
+
+})
+  .done(function( request) {
+
+     alert( "Data Saved: " + request.response );
+         })
+    .fail(function() {
+      alert( "error" );
+    })
+    .always(function() {
+      var url1 = "http://stackoverflow.com";
+      $(location).attr('href',url1);
+      // window.location.href = "file:///home/jyojith/betcy/Javascript/login.html";
+      alert( "finished" );
+
+    });
+  // var jqxhr = $.post( "http://172.16.53.30:3000/signup", function() {
+  // alert( "success" );
+  //   })
+  // .done(function() {
+  //   alert( "second success" );
+  // })
+  // .fail(function() {
+  //   alert( "error" );
+  // })
+  // .always(function() {
+  //   alert( "finished" );
+  // });
+
+//
+//                   for(name in params) {
+//                    urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(params[name]));
+//                     }
+//                    urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+//   var request = new XMLHttpRequest();
+// request.open('POST', 'http://172.16.53.30:3000/signup?'+urlEncodedData, true);
+// request.responseType = "json";
+// request.send(urlEncodedData);
+// request.onreadystatechange=function() {
+//   if (this.readyState == 4 && this.status == 200) {
+//    console.log("Success K");
+//   }
+//   console.log('hii', request.status);
+//   console.log(request)
+// }
+//
+//                 // }
+
+// });
+// });
+}
+}
+</script>
+</html>
