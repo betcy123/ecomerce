@@ -1,20 +1,46 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="login.css" rel="stylesheet">
+    <link href="../final/login.css" rel="stylesheet">
 </head>
 <body>
   <div class="box">
-  <form name="login" action="#"onsubmit="()" method="post">
+  <!-- <form name="login" action="#"onsubmit="()" method="post"> -->
   <div class="container">
   <h1>Signin</h1>
   <p>Please fill in this form to login in to the site.</p>
   <hr>
   <label for="email"><br>Email<br></label>
-  <input type="email" placeholder="Enter Email" name="email" required>
+  <input type="email" placeholder="Enter Email" id="email" required>
   <label for="password"><br>Password<br></label>
-  <input type="PASSWORD" placeholder="Enter password" name="psw" required>
-  <button class="loginbtn">Login</button>
-  <a href="#" class="login-forgot-pass">forgot password?</a></div>
-</body>
+  <input type="PASSWORD" placeholder="Enter password" id="psw" required>
+  <button class="loginbtn" onclick="loginto()">Login</button>
+  <a href="#"class="login-forgot-pass">forgot password?</a></div>
+  </body>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+  function loginto()
+  {
+       var uemail = $("#email").val();
+       var pass = $("#psw").val();
+  $.ajax({
+  method: "POST",
+  async:false,
+  url: "http://172.16.53.30:3000/login",
+  data: {
+                email:uemail,
+                psw:pass },
+
+})
+  .done(function( request) {
+     alert( "valid user: " + request.response );
+     window.location.assign("file:///home/jyojith/betcy/ecomerce/final/home.html");
+         })
+    .fail(function() {
+      alert( "error" );
+          })
+          
+  }
+</script>
 </html>

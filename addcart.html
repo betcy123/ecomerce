@@ -1,0 +1,92 @@
+<html>
+</<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>Product Details</title>
+  <style>
+    footer{
+        margin-top: 40%;
+        background-color:#1B1B1B;
+        padding-top: 2%;
+        padding-left: 2%;
+                 }
+    .tile1
+    {
+      margin-left:25%;
+      color:red;
+    }
+    </style>
+</head>
+
+<body onload="myfunction()">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">E Commerce</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a style="z-index:1" href="file:///home/jyojith/betcy/ecomerce/final/home.html">Home</a></li>
+        <li><a style=href="#">My cart</a></li>
+        <li><a style="z-index:3" href="file:///home/jyojith/betcy/ecomerce/final/wishlist.html">My wish</a></li>
+      </ul>
+      <form class="navbar-form navbar">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" name="search">
+          <div class="input-group-btn">
+            <button class="btn btn-primary btn-lg" type="submit">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </div>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+    </div>
+  </nav>
+  <div class="tile1">
+    <h1>My cart</h1>
+  </div>
+  <footer>
+    <table style="width:250%">
+      <tr>
+        <td><input class="MyButton" type="button" value="About" onclick="window.location.href='file:///home/jyojith/betcy/ecomerce/final/about.html'" /></td>
+        <td><button type="button">Help</button></td>
+        <td><button type="button">Mail Us</button></td>
+      </tr>
+      <tr>
+        <td><button type="button">Contact Us</button></td>
+        <td><button type="button">FAQ</button></td>
+        <td><textarea rows="4" cols="50"></textarea></td>
+      </tr>
+    </table>
+  </footer>
+</body>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function myfunction()
+{
+  $.ajax({
+      type: 'POST',
+      url: 'http://172.16.53.30:3000/',
+      data: {
+        get_param: 'value'
+      },
+      dataType: 'json',
+      success: function(data) {
+        $.each(data, function(index, element) {
+          $('.content').append($('<div>', {
+            text: element.name
+          }));
+        });
+      }
+    });
+}
+</script>
+
+</html>
